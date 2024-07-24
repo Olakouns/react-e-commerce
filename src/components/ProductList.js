@@ -12,8 +12,10 @@ const ProductList = memo(({ products }) => {
         if(index !== -1) {
             const newCart = [...prevCart];
             newCart[index].quantity += 1;
+            localStorage.setItem("cart", JSON.stringify(newCart));
             return newCart ;
         }
+        localStorage.setItem("cart", JSON.stringify([...prevCart, {product, quantity: 1}]));
       return [...prevCart, {product, quantity: 1}];
     });
   }, [setCart]);
