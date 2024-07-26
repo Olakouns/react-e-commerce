@@ -3,21 +3,29 @@ import "./App.css";
 import NavBar from "./components/NavBar";
 import CartContext from "./contexts/CartContext";
 import { useState } from "react";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("cart")) || []
+  );
   return (
-    <CartContext.Provider value={{
-      cart,
-      setCart
-    }}>
-      <div className="App">
-        <NavBar />
-        <div className="container mt-3">
-          <Outlet />
+    <>
+      <CartContext.Provider
+        value={{
+          cart,
+          setCart,
+        }}
+      >
+        <div className="App">
+          <NavBar />
+          <div className="container mt-3">
+            <Outlet />
+          </div>
         </div>
-      </div>
-    </CartContext.Provider>
+      </CartContext.Provider>
+      <ToastContainer />
+    </>
   );
 }
 
