@@ -4,6 +4,8 @@ import NavBar from "./components/NavBar";
 import CartContext from "./contexts/CartContext";
 import { useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 function App() {
   const [cart, setCart] = useState(
@@ -11,19 +13,21 @@ function App() {
   );
   return (
     <>
-      <CartContext.Provider
-        value={{
-          cart,
-          setCart,
-        }}
-      >
+      <Provider store={store}>
         <div className="App">
           <NavBar />
           <div className="container mt-3">
             <Outlet />
           </div>
         </div>
-      </CartContext.Provider>
+      </Provider>
+      {/* <CartContext.Provider
+        value={{
+          cart,
+          setCart,
+        }}
+      > */}
+      {/* </CartContext.Provider> */}
       <ToastContainer />
     </>
   );

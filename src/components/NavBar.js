@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import CartContext from "../contexts/CartContext";
+import { useSelector } from "react-redux";
 
 function NavBar(props) {
-  const {cart} = useContext(CartContext);
+  const cart = useSelector((state) => state.cartReducer)
+  // const {cart} = useContext(CartContext);
   console.log("NavBar --"); 
   return (
     <div>

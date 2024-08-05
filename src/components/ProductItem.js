@@ -1,8 +1,13 @@
 import { memo, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { addProduct } from "../store/cartSlice";
 
 const ProductItem = memo(({ product, handlerAddToCart }) => {
+
+  const dispatch = useDispatch();
+ 
   const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -14,7 +19,8 @@ const ProductItem = memo(({ product, handlerAddToCart }) => {
 
   const addToCart = (event) => {
     event.stopPropagation();
-    handlerAddToCart(product);
+    // handlerAddToCart(product);
+    dispatch(addProduct(product));
   }
 
   const goToDetail = () => {
